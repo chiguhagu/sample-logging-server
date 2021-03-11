@@ -1,15 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 func main() {
+	l := zap.NewExample()
+	l.WithOptions()
 	for true {
-		fmt.Fprintln(os.Stdout, "{\"msg\":\"stdout\"}")
-		fmt.Fprintln(os.Stderr, "{\"msg\":\"stderr\"}")
+		l.Error("error log!")
+		l.Info("information log!")
 		time.Sleep(time.Second * 60)
 	}
 }
